@@ -3,9 +3,10 @@ from telethon.tl.functions.messages import SendMessageRequest
 
 import config
 
-import datetime
+from datetime import datetime
 import time
 import random
+
 
 
 def forayTime(chatTarget):
@@ -24,7 +25,12 @@ def defenseTime(chatTarget):
 
 
 def isWartime(datetime):
+<<<<<<< HEAD
     schedule = [3, 11, 19]
+=======
+    # UTC
+    schedule = [7, 15, 23]
+>>>>>>> vini-gambiarras
 
     for val in schedule:
         if datetime.hour == val and datetime.minute >= random.randint(54, 58):
@@ -32,6 +38,9 @@ def isWartime(datetime):
 
     return False
 
+#TOP KEK FUNCTION
+def getTimezone():
+    return datetime.now().hour - datetime.utcnow().hour
 
 # Inicia o client
 client = TelegramClient(config.session_name, config.api_id, config.api_hash)
@@ -43,14 +52,17 @@ except:
     quit()
 
 print("Connected.")
+print(str(time.tzname[0])+" / Timezone: "+str(getTimezone()))
 
+#Chatwars Channel
 chatTarget = 'chtwrsbot'
 
 # Lazy loop, sorry for that
 while True:
 
     # Get current time.
-    timeNow = datetime.datetime.now()
+    timeNow = datetime.now()
+    timeNowUTC = datetime.utcnow()
 
     # Get target last message, I know its fallible, but who cares?
     messages = client.get_message_history(chatTarget, limit=1)
@@ -62,7 +74,7 @@ while True:
         forayTime(chatTarget)
 
     # Check Wartime
-    if isWartime(timeNow):
+    if isWartime(timeNowUTC):
         print(str(timeNow) + " - Defense time!")
         isDefended = True
         defenseTime(chatTarget)

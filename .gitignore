@@ -105,3 +105,4 @@ ENV/
 venv
 src/config.ini
 *.session
+src/main.py
