@@ -23,14 +23,18 @@ def defenseTime(chatTarget):
     # Waiting 5 minutes for end of battle
     time.sleep(300)
 
-
 def isWartime(datetime):
+<<<<<<< HEAD
     schedule = [3, 11, 19]
     # UTC
+=======
+
+    # Wartime schedule - Timezone UTC
+>>>>>>> vini-gambiarras
     schedule = [7, 15, 23]
 
     for val in schedule:
-        if datetime.hour == val and datetime.minute >= random.randint(54, 58):
+        if datetime.hour == (val-1) and datetime.minute >= random.randint(54, 58):
             return True
 
     return False
