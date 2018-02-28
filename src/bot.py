@@ -25,12 +25,9 @@ def defenseTime(chatTarget):
 
 
 def isWartime(datetime):
-<<<<<<< HEAD
     schedule = [3, 11, 19]
-=======
     # UTC
     schedule = [7, 15, 23]
->>>>>>> vini-gambiarras
 
     for val in schedule:
         if datetime.hour == val and datetime.minute >= random.randint(54, 58):
